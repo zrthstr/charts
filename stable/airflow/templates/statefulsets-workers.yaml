@@ -142,8 +142,8 @@ spec:
             {{- toYaml .Values.dags.git.gitSync.resources | nindent 12 }}
         {{- end }}
         - name: {{ .Chart.Name }}-worker
-          imagePullPolicy: {{ .Values.airflow.image.pullPolicy }}
-          image: "{{ .Values.airflow.image.repository }}:{{ .Values.airflow.image.tag }}"
+          imagePullPolicy: {{ .Values.airflow.image.worker.pullPolicy }}
+          image: "{{ .Values.airflow.image.worker.repository }}:{{ .Values.airflow.image.worker.tag }}"
           {{- if and (eq .Values.airflow.executor "CeleryExecutor") (.Values.workers.celery.gracefullTermination) }}
           lifecycle:
             preStop:
